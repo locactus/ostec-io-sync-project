@@ -1,1 +1,1 @@
-# ostec-io-sync-project ping
+# ostec-io-sync-project ping test
