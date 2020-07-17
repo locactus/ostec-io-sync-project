@@ -5,3 +5,4 @@ metadata:
 data:
   host: ostec-io-activemq
   ossie: ostec-io-activemq
+  ossie2: ostec-io-activemq
