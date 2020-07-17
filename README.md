@@ -1,1 +1,1 @@
-# ostec-io-sync-project ping test pong
+# ostec-io-sync-project
