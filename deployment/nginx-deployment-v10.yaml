@@ -1,0 +1,63 @@
+# Copyright 2020 Ossie James
+#
+#   Licensed under the Apache License, Version 2.0 (the "License");
+#   you may not use this file except in compliance with the License.
+#   You may obtain a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+#   Unless required by applicable law or agreed to in writing, software
+#   distributed under the License is distributed on an "AS IS" BASIS,
+#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#   See the License for the specific language governing permissions and
+#   limitations under the License.
+
+##################################################################################################
+# ActiveMQ
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: ostec-io-nginx-v10
+  labels:
+    app: ostec-io-nginx-v10
+    service: ostec-io-nginx-v10
+spec:
+  type: LoadBalancer
+  ports:
+  - name: web
+    port: 8080
+    targetPort: 80
+  selector:
+    app: ostec-io-nginx-v10
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ostec-io-nginx-v10
+  labels:
+    app: ostec-io-nginx-v10
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ostec-io-nginx-v10
+    spec:
+      containers:
+      - name: ostec-io-nginx-v10
+        image: nginx
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        env:
+        - name: OSSIE_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: ossie-secret
+              key: os-sec
+        - name: OSSIE_CONFIG
+          valueFrom:
+            configMapKeyRef:
+              name: ossie-config
+              key: oss-con
