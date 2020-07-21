@@ -38,7 +38,10 @@ metadata:
   labels:
     app: ostec-io-nginx-v12
 spec:
-  replicas: 1
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ostec-io-nginx-v12
   template:
     metadata:
       labels:
@@ -47,17 +50,5 @@ spec:
       containers:
       - name: ostec-io-nginx-v12
         image: nginx
-        imagePullPolicy: Always
         ports:
         - containerPort: 80
-        env:
-        - name: OSSIE_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: ossie-secret
-              key: os-sec
-        - name: OSSIE_CONFIG
-          valueFrom:
-            configMapKeyRef:
-              name: ossie-config
-              key: oss-con
