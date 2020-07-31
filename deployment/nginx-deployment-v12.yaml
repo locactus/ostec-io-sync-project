@@ -49,6 +49,6 @@ spec:
     spec:
       containers:
       - name: ostec-io-nginx-v12
-        image: nginx:1.18
+        image: nginx
         ports:
         - containerPort: 80
