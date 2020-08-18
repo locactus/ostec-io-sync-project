@@ -1,1 +1,1 @@
-# ostec-io-sync-project boo kyjkyjt 
+# ostec-io-sync-project
